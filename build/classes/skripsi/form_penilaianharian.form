@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel4"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,61,0,0,1,-6"/>
+    <SyntheticProperty name="formPosition" type="java.awt.Point" value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,97,119,116,46,80,111,105,110,116,-74,-60,-118,114,52,126,-56,38,2,0,2,73,0,1,120,73,0,1,121,120,112,0,0,0,0,0,0,0,0"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
+    <SyntheticProperty name="generatePosition" type="boolean" value="true"/>
+    <SyntheticProperty name="generateSize" type="boolean" value="true"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="h_idpentashih" min="-2" pref="107" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="h_idsantri" min="-2" pref="108" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
+                                              <Component id="h_idpenilaian" min="-2" pref="107" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                              <Component id="h_tanggal" min="-2" pref="92" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="h_namapentashih" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="h_namasantri" min="-2" max="-2" attributes="0"/>
+                                  <Component id="h_setoranke" min="-2" pref="107" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="249" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="h_dari" pref="120" max="32767" attributes="0"/>
+                          <Component id="h_sampai" alignment="0" max="32767" attributes="0"/>
+                          <Component id="h_cbsurat" alignment="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="h_nilai" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="h_keterangan" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jSeparator2" min="-2" pref="433" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+              <Component id="h_bttambah" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="h_btedit" min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="h_bthapus" min="-2" pref="78" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h_idpenilaian" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h_setoranke" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h_idsantri" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="h_namasantri" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="h_idpentashih" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="h_namapentashih" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                  <Component id="h_tanggal" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSeparator1" min="-2" pref="2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="h_cbsurat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="h_nilai" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="h_keterangan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h_dari" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h_sampai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="h_bttambah" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="h_btedit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="h_bthapus" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="128" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Id Penilaian"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="No Induk"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nama"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="h_idpenilaian">
+    </Component>
+    <Component class="javax.swing.JTextField" name="h_idsantri">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="h_idsantriKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Setoran Ke"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="h_setoranke">
+    </Component>
+    <Component class="javax.swing.JLabel" name="h_namasantri">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="........................."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Id. Pentashih"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nama"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tanggal"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="h_idpentashih">
+    </Component>
+    <Component class="javax.swing.JLabel" name="h_namapentashih">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..........................."/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="h_tanggal">
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Penilaian Harian Santri Tafiz Al-Qur&apos;an"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel12">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Surat"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel13">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Dari"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel14">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sampai"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="h_cbsurat">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="115">
+            <StringItem index="0" value="Al-Fatihah"/>
+            <StringItem index="1" value="AL-BAQARAH"/>
+            <StringItem index="2" value="&#xa0;ALI IMRAN"/>
+            <StringItem index="3" value="&#xa0;ANNISA"/>
+            <StringItem index="4" value="&#xa0;AL-MA`IDAH"/>
+            <StringItem index="5" value="&#xa0;AL-AN&apos;AM"/>
+            <StringItem index="6" value="&#xa0;AL-A&apos;RAF"/>
+            <StringItem index="7" value="&#xa0;AL-ANFAL"/>
+            <StringItem index="8" value="&#xa0;ATTAUBAH"/>
+            <StringItem index="9" value="&#xa0;YUNUS"/>
+            <StringItem index="10" value="&#xa0;HUD"/>
+            <StringItem index="11" value="&#xa0;YUSUF"/>
+            <StringItem index="12" value="&#xa0;ARRA&apos;DU"/>
+            <StringItem index="13" value="&#xa0;IBRAHIM"/>
+            <StringItem index="14" value="&#xa0;AL-HIJRU"/>
+            <StringItem index="15" value="&#xa0;ANNAHLU"/>
+            <StringItem index="16" value="&#xa0;AL-ISRA"/>
+            <StringItem index="17" value="&#xa0;AL-KAHFI"/>
+            <StringItem index="18" value="&#xa0;MARYAM"/>
+            <StringItem index="19" value="&#xa0;TOHA"/>
+            <StringItem index="20" value="&#xa0;AL-ANBIYA"/>
+            <StringItem index="21" value="&#xa0;AL-HAJJ"/>
+            <StringItem index="22" value="&#xa0;AL-MU`MINUN"/>
+            <StringItem index="23" value="&#xa0;ANNUR"/>
+            <StringItem index="24" value="&#xa0;AL-FURQAN"/>
+            <StringItem index="25" value="&#xa0;ASY-SYU&apos;ARA"/>
+            <StringItem index="26" value="&#xa0;ANNAMLU"/>
+            <StringItem index="27" value="&#xa0;AL-QASHASH"/>
+            <StringItem index="28" value="&#xa0;AL-&apos;ANKABUT"/>
+            <StringItem index="29" value="&#xa0;ARRUM"/>
+            <StringItem index="30" value="&#xa0;LUQMAN"/>
+            <StringItem index="31" value="&#xa0;ASSAJDAH"/>
+            <StringItem index="32" value="&#xa0;AL-AHZAB"/>
+            <StringItem index="33" value="&#xa0;SABA`"/>
+            <StringItem index="34" value="&#xa0;FATHIR"/>
+            <StringItem index="35" value="&#xa0;YASIN"/>
+            <StringItem index="36" value="&#xa0;ASH-SHAFFAT"/>
+            <StringItem index="37" value="&#xa0;SHAD"/>
+            <StringItem index="38" value="&#xa0;AZZUMAR"/>
+            <StringItem index="39" value="&#xa0;AL-MU`MIN"/>
+            <StringItem index="40" value="&#xa0;FUSHSHILAT"/>
+            <StringItem index="41" value="&#xa0;ASY-SYURA"/>
+            <StringItem index="42" value="&#xa0;AZZUKHRUF"/>
+            <StringItem index="43" value="&#xa0;ADDUKHAN"/>
+            <StringItem index="44" value="&#xa0;AL-JATSIYAH"/>
+            <StringItem index="45" value="&#xa0;AL-AHQAF"/>
+            <StringItem index="46" value="&#xa0;MUHAMMAD"/>
+            <StringItem index="47" value="&#xa0;AL-FATHU"/>
+            <StringItem index="48" value="&#xa0;AL-HUJURAT"/>
+            <StringItem index="49" value="&#xa0;QAF"/>
+            <StringItem index="50" value="&#xa0;ADZ-DZARIYAT"/>
+            <StringItem index="51" value="&#xa0;ATH-THUR"/>
+            <StringItem index="52" value="&#xa0;ANNAJMU"/>
+            <StringItem index="53" value="&#xa0;AL-QAMAR"/>
+            <StringItem index="54" value="&#xa0;ARRAHMAN"/>
+            <StringItem index="55" value="&#xa0;AL-WAQI&apos;AH"/>
+            <StringItem index="56" value="&#xa0;AL-HADID"/>
+            <StringItem index="57" value="&#xa0;AL-MUJADILAH"/>
+            <StringItem index="58" value="&#xa0;AL-HASYR"/>
+            <StringItem index="59" value="&#xa0;AL-MUMTAHANAH"/>
+            <StringItem index="60" value="&#xa0;ASH-SHAF"/>
+            <StringItem index="61" value="&#xa0;AL-JUMU&apos;AH"/>
+            <StringItem index="62" value="&#xa0;AL-MUNAFIQUN"/>
+            <StringItem index="63" value="&#xa0;ATTAGHABUN"/>
+            <StringItem index="64" value="&#xa0;ATH-THALAQ"/>
+            <StringItem index="65" value="&#xa0;ATTAHRIM"/>
+            <StringItem index="66" value="&#xa0;AL-MULKU"/>
+            <StringItem index="67" value="&#xa0;AL-QALAM"/>
+            <StringItem index="68" value="&#xa0;AL-HAQQAH"/>
+            <StringItem index="69" value="&#xa0;AL-MA&apos;ARIJ"/>
+            <StringItem index="70" value="&#xa0;NUH"/>
+            <StringItem index="71" value="&#xa0;AL-JINN"/>
+            <StringItem index="72" value="&#xa0;AL-MUZAMMIL"/>
+            <StringItem index="73" value="&#xa0;AL-MUDDATS-TSIR"/>
+            <StringItem index="74" value="&#xa0;AL-QIYAMAH"/>
+            <StringItem index="75" value="&#xa0;AL-INSAN"/>
+            <StringItem index="76" value="&#xa0;AL-MURSALAT"/>
+            <StringItem index="77" value="&#xa0;ANNABA`"/>
+            <StringItem index="78" value="&#xa0;ANNAZI&apos;AT"/>
+            <StringItem index="79" value="&#xa0;&apos;ABASA"/>
+            <StringItem index="80" value="&#xa0;ATTAKWIR"/>
+            <StringItem index="81" value="&#xa0;AL-INFITHAR"/>
+            <StringItem index="82" value="&#xa0;ATTATHFIF"/>
+            <StringItem index="83" value="&#xa0;AL-INSYIQAQ"/>
+            <StringItem index="84" value="&#xa0;AL-BURUJ"/>
+            <StringItem index="85" value="&#xa0;ATH-THARIQ"/>
+            <StringItem index="86" value="&#xa0;AL-A&apos;LA"/>
+            <StringItem index="87" value="&#xa0;AL-GHASYIYAH"/>
+            <StringItem index="88" value="&#xa0;AL-FAJR"/>
+            <StringItem index="89" value="&#xa0;AL-BALAD"/>
+            <StringItem index="90" value="&#xa0;ASY-SYAMSU"/>
+            <StringItem index="91" value="&#xa0;AL-LAIL"/>
+            <StringItem index="92" value="&#xa0;ADH-DHUHA"/>
+            <StringItem index="93" value="&#xa0;AL-INSYIRAH"/>
+            <StringItem index="94" value="&#xa0;ATTIN"/>
+            <StringItem index="95" value="&#xa0;AL-&apos;ALAQ"/>
+            <StringItem index="96" value="&#xa0;AL-QADAR"/>
+            <StringItem index="97" value="&#xa0;AL-BAYYINAH"/>
+            <StringItem index="98" value="&#xa0;AZZILZAL"/>
+            <StringItem index="99" value="&#xa0;AL-&apos;ADIYAT"/>
+            <StringItem index="100" value="&#xa0;AL-QARI&apos;AH"/>
+            <StringItem index="101" value="&#xa0;ATTAKATSUR"/>
+            <StringItem index="102" value="&#xa0;AL-&apos;ASHR"/>
+            <StringItem index="103" value="&#xa0;AL-HUMAZAH"/>
+            <StringItem index="104" value="&#xa0;AL-FIL"/>
+            <StringItem index="105" value="&#xa0;QURAISY"/>
+            <StringItem index="106" value="&#xa0;AL-MA&apos;UN"/>
+            <StringItem index="107" value="&#xa0;AL-KAUTSAR"/>
+            <StringItem index="108" value="&#xa0;AL-KAFIRUN"/>
+            <StringItem index="109" value="&#xa0;ANNASHRU"/>
+            <StringItem index="110" value="&#xa0;ALLAHAB"/>
+            <StringItem index="111" value="&#xa0;AL-IKHLASH"/>
+            <StringItem index="112" value="&#xa0;AL-FALAQ"/>
+            <StringItem index="113" value="&#xa0;ANNAS"/>
+            <StringItem index="114" value=" "/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="h_dari">
+    </Component>
+    <Component class="javax.swing.JTextField" name="h_sampai">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel15">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nilai"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel16">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Keterangan"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="h_nilai">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="h_nilaiActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="h_keterangan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..............."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator2">
+    </Component>
+    <Component class="javax.swing.JButton" name="h_bttambah">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="TAMBAH"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="h_bttambahActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="h_btedit">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="EDIT"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="h_bthapus">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="HAPUS"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
