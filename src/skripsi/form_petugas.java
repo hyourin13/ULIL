@@ -32,9 +32,9 @@ public class form_petugas extends javax.swing.JDialog {
         } catch (Exception e) {
         }
         setLocationRelativeTo(null);
-        
+
         autokode();
-        
+
     }
 
     public void bersih() {
@@ -186,6 +186,7 @@ public class form_petugas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Data Tersimpan");
             bersih();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
         autokode();
     }//GEN-LAST:event_u_bttambahActionPerformed
@@ -202,13 +203,14 @@ public class form_petugas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus ");
             bersih();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_u_bthapusActionPerformed
 
     private void u_bteditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_u_bteditActionPerformed
         // TODO add your handling code here:
         try {
-             String sql = "update petugas set nama=?, Password=?, alamat=?, jabatan=? where kode_petugas=?";
+            String sql = "update petugas set nama=?, Password=?, alamat=?, jabatan=? where kode_petugas=?";
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
             PreparedStatement update = con.prepareStatement(sql);
@@ -221,6 +223,7 @@ public class form_petugas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Data Sudah Di Edit");
             bersih();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_u_bteditActionPerformed
 

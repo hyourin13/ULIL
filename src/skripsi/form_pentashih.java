@@ -5,12 +5,22 @@
  */
 package skripsi;
 
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ulil_Mz
  */
 public class form_pentashih extends javax.swing.JDialog {
-
+      private static Connection con; 
     /**
      * Creates new form form_pentashih
      */
@@ -18,6 +28,45 @@ public class form_pentashih extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        autokode3();
+    }
+    
+     private void autokode3() {
+        try {
+
+            String query = "SELECT MAX(right(no_induk,5))AS no FROM peserta_tahfidz";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                if (rs.first() == false) {
+                    e_idpentashih.setText("0001");
+                } else {
+                    rs.last();
+                    int auto_id = rs.getInt(1) + 1;
+                    String no = String.valueOf(auto_id);
+                    int nolong = no.length();
+                    for (int a = 0; a < 1 - nolong; a++) {
+                        no = "000" + no;
+                    }
+                   e_idpentashih.setText("000" + no);
+                }
+            }
+            rs.close();
+            st.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR:\n" + e.toString(), "kesalahan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+     
+      public void bersih() {
+        e_idpentashih.setText(null);
+        e_nama.setText(null);
+        e_tempat.setText(null);
+        e_tanggal.setDate(null);
+        e_alamat.setText(null);
+
     }
 
     /**
@@ -68,6 +117,11 @@ public class form_pentashih extends javax.swing.JDialog {
         });
 
         e_bthapus.setText("HAPUS");
+        e_bthapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                e_bthapusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,7 +163,7 @@ public class form_pentashih extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(e_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(e_alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,11 +201,87 @@ public class form_pentashih extends javax.swing.JDialog {
 
     private void e_bttambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_e_bttambahActionPerformed
         // TODO add your handling code here:
+         if ((e_idpentashih.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Isi Data dengan Lengkap!");
+        } else {
+            try {
+              
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String Tanggal = String.valueOf(sdf.format(e_tanggal.getDate()));
+
+                String sql = "insert into pdb values (?,?,?,?,?)";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement tulis = koneksi.prepareStatement(sql);
+                tulis.setString(1, e_idpentashih.getText());
+                tulis.setString(2, e_nama.getText());
+                tulis.setString(3, e_tempat.getText());
+                tulis.setString(4, Tanggal);
+                tulis.setString(5, e_alamat.getText());
+                tulis.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan");
+                bersih();
+                autokode3();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_e_bttambahActionPerformed
 
     private void e_bteditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_e_bteditActionPerformed
         // TODO add your handling code here:
+          if ((e_idpentashih.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Isi Data dengan Lengkap!");
+        } else {
+            try {
+              
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String Tanggal = String.valueOf(sdf.format(e_tanggal.getDate()));
+
+                String sql = "UPDATE pentashih SET nama=?,tempat=?,"
+                        + "tanggal_lahir=?,alamat=? WHERE id_pentashih=?";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement tulis = koneksi.prepareStatement(sql);
+                tulis.setString(1, e_idpentashih.getText());
+                tulis.setString(2, e_nama.getText());
+                tulis.setString(3, e_tempat.getText());
+                tulis.setString(4, Tanggal);
+                tulis.setString(5, e_alamat.getText());
+                tulis.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan");
+                bersih();
+                autokode3();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_e_bteditActionPerformed
+
+    private void e_bthapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_e_bthapusActionPerformed
+        // TODO add your handling code here:
+           try {
+            String sql = "Delete from pentashih where no_pendaftar=?";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            PreparedStatement tulis = koneksi.prepareStatement(sql);
+            tulis.setString(1, e_idpentashih.getText());
+            tulis.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus ");
+            bersih();
+             autokode3();
+        } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_e_bthapusActionPerformed
 
     /**
      * @param args the command line arguments

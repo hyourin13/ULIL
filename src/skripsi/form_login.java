@@ -114,10 +114,10 @@ public class form_login extends javax.swing.JDialog {
             UR.setString(1, l_user.getText());
             UR.setString(2, l_password.getText());
             ResultSet RS = UR.executeQuery();
-
             if (RS.next()) {
                 JOptionPane.showMessageDialog(this, "Login Berhasil", "Info", JOptionPane.INFORMATION_MESSAGE);
                 new form_menu().show();
+                
                 // AQ.setVisible(true);
                 //this.dispose();
             } else {

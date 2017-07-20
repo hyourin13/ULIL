@@ -5,13 +5,18 @@
  */
 package skripsi;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -114,9 +119,9 @@ public class form_datatahfidz extends javax.swing.JDialog {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(383, 159, 38, 16);
         getContentPane().add(t_noinduk);
-        t_noinduk.setBounds(193, 75, 93, 20);
+        t_noinduk.setBounds(193, 75, 93, 24);
         getContentPane().add(t_nama);
-        t_nama.setBounds(193, 119, 128, 20);
+        t_nama.setBounds(193, 119, 128, 24);
         getContentPane().add(t_alamat);
         t_alamat.setBounds(546, 188, 120, 51);
 
@@ -124,26 +129,26 @@ public class form_datatahfidz extends javax.swing.JDialog {
         t_cblaki.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         t_cblaki.setText("Laki-Laki");
         getContentPane().add(t_cblaki);
-        t_cblaki.setBounds(193, 195, 71, 23);
+        t_cblaki.setBounds(193, 195, 78, 28);
 
         buttonGroup1.add(t_cbpr);
         t_cbpr.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         t_cbpr.setText("Perempuan");
         getContentPane().add(t_cbpr);
-        t_cbpr.setBounds(282, 195, 79, 23);
+        t_cbpr.setBounds(282, 195, 86, 28);
         getContentPane().add(t_tempat);
-        t_tempat.setBounds(193, 157, 61, 20);
+        t_tempat.setBounds(193, 157, 61, 24);
         getContentPane().add(t_tanggal);
-        t_tanggal.setBounds(264, 157, 91, 20);
+        t_tanggal.setBounds(264, 157, 123, 29);
 
         t_cbtarget.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         t_cbtarget.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5 Juz", "10 Juz", "15 Juz", "30 Juz", " " }));
         getContentPane().add(t_cbtarget);
-        t_cbtarget.setBounds(546, 81, 57, 20);
+        t_cbtarget.setBounds(546, 81, 62, 24);
         getContentPane().add(t_wali);
-        t_wali.setBounds(546, 119, 102, 20);
+        t_wali.setBounds(546, 119, 102, 24);
         getContentPane().add(t_nope);
-        t_nope.setBounds(546, 157, 102, 20);
+        t_nope.setBounds(546, 157, 102, 24);
 
         t_tambah.setText("TAMBAH");
         t_tambah.addActionListener(new java.awt.event.ActionListener() {
@@ -152,15 +157,25 @@ public class form_datatahfidz extends javax.swing.JDialog {
             }
         });
         getContentPane().add(t_tambah);
-        t_tambah.setBounds(193, 314, 73, 23);
+        t_tambah.setBounds(193, 314, 79, 32);
 
         t_edit.setText("EDIT");
+        t_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_editActionPerformed(evt);
+            }
+        });
         getContentPane().add(t_edit);
-        t_edit.setBounds(293, 314, 68, 23);
+        t_edit.setBounds(293, 314, 68, 32);
 
         t_hapus.setText("HAPUS");
+        t_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_hapusActionPerformed(evt);
+            }
+        });
         getContentPane().add(t_hapus);
-        t_hapus.setBounds(395, 314, 65, 23);
+        t_hapus.setBounds(395, 314, 70, 32);
 
         jButton1.setText("Cari");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +184,7 @@ public class form_datatahfidz extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(292, 69, 51, 32);
+        jButton1.setBounds(292, 69, 53, 32);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/latar1.jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -233,13 +248,118 @@ public class form_datatahfidz extends javax.swing.JDialog {
 
             }
         } catch (SQLException | ParseException e) {
+            JOptionPane.showMessageDialog(this, e);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void t_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahActionPerformed
         // TODO add your handling code here:
+        if ((t_noinduk.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Isi Data dengan Lengkap!");
+        } else {
+            try {
+                String JenKel;
+                if (t_cblaki.isSelected()) {
+                    JenKel = "Laki-Laki";
+                } else {
+                    JenKel = "Perempuan";
+                }
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String Tanggal = String.valueOf(sdf.format(t_tanggal.getDate()));
+
+                String sql = "insert into pdb values (?,?,?,?,?,?,?,?,?)";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement tulis = koneksi.prepareStatement(sql);
+                tulis.setString(1, t_noinduk.getText());
+                tulis.setString(2, t_nama.getText());
+                tulis.setString(3, t_tempat.getText());
+                tulis.setString(4, Tanggal);
+                tulis.setString(5, JenKel);
+                tulis.setString(6, t_cbtarget.getSelectedItem().toString());
+                tulis.setString(7, t_wali.getText());
+                tulis.setString(8, t_nope.getText());
+                tulis.setString(9, t_alamat.getText());
+                tulis.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan");
+                bersih();
+                autokode3();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_t_tambahActionPerformed
+
+    private void t_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_editActionPerformed
+        // TODO add your handling code here:
+        
+         if ((t_noinduk.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Isi Data dengan Lengkap!");
+        } else {
+            try {
+                String JenKel;
+                if (t_cblaki.isSelected()) {
+                    JenKel = "Laki-Laki";
+                } else {
+                    JenKel = "Perempuan";
+                }
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String Tanggal = String.valueOf(sdf.format(t_tanggal.getDate()));
+
+                String sql = "UPDATE peserta_tahfidz SET nama=?,tempat_lahir=?,"
+                        + "tanggal_lahir=?,jenkel=?,targethafalan=?,wali/ortu=?,nope=?,Alamat=?"
+                        + " WHERE no_induk=?";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement tulis = koneksi.prepareStatement(sql);
+                tulis.setString(9, t_noinduk.getText());
+                tulis.setString(1, t_nama.getText());
+                tulis.setString(2, t_tempat.getText());
+                tulis.setString(3, Tanggal);
+                tulis.setString(4, JenKel);
+                tulis.setString(5, t_cbtarget.getSelectedItem().toString());
+                tulis.setString(6, t_wali.getText());
+                tulis.setString(7, t_nope.getText());
+                tulis.setString(8, t_alamat.getText());
+                tulis.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil Di Diedit");
+                bersih();
+                autokode3();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_t_editActionPerformed
+
+    private void t_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hapusActionPerformed
+        // TODO add your handling code here:
+          try {
+            String sql = "Delete from peserta_tahfidz where no_pendaftar=?";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            PreparedStatement tulis = koneksi.prepareStatement(sql);
+            tulis.setString(1, t_noinduk.getText());
+            tulis.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus ");
+            bersih();
+            //refresh();
+            //Tampil_Tabel();
+            //input();
+             autokode3();
+        } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+       
+    }//GEN-LAST:event_t_hapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,9 +421,7 @@ public class form_datatahfidz extends javax.swing.JDialog {
                     for (int a = 0; a < 1 - nolong; a++) {
                         no = "171100" + no;
                     }
-
-                    t_noinduk.setText("171100" + no);
-
+                   t_noinduk.setText("171100" + no);
                 }
             }
             rs.close();
@@ -312,6 +430,20 @@ public class form_datatahfidz extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR:\n" + e.toString(), "kesalahan", JOptionPane.WARNING_MESSAGE);
         }
+    }
+    
+     public void bersih() {
+        t_noinduk.setText(null);
+        t_nama.setText(null);
+        t_cblaki.setSelected(true);
+        t_cbpr.setSelected(true);
+        t_tempat.setText(null);
+        t_tanggal.setDate(null);
+        t_cbtarget.setSelectedItem(null);
+        t_wali.setText(null);
+        t_nope.setText(null);
+        t_alamat.setText(null);
+   
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

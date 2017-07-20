@@ -15,8 +15,6 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import static sun.security.krb5.Config.refresh;
-
 /**
  *
  * @author Ulil_Mz
@@ -51,6 +49,10 @@ public class form_data_pdb extends javax.swing.JDialog {
         p_pendibu.setSelectedItem(null);
         setLocationRelativeTo(null);
 
+    }
+
+    form_data_pdb() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -514,6 +516,7 @@ public class form_data_pdb extends javax.swing.JDialog {
             //Tampil_Tabel();
             //input();
         } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
         }
         autokode();
 

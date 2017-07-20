@@ -21,7 +21,9 @@ import javax.swing.JOptionPane;
  * @author Ulil_Mz
  */
 public class form_penilaianharian extends javax.swing.JDialog {
-private static Connection con;
+
+    private static Connection con;
+
     /**
      * Creates new form form_penilaianharian
      */
@@ -145,6 +147,11 @@ private static Connection con;
                 h_nilaiActionPerformed(evt);
             }
         });
+        h_nilai.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                h_nilaiKeyPressed(evt);
+            }
+        });
 
         h_keterangan.setText("...............");
 
@@ -158,9 +165,19 @@ private static Connection con;
 
         h_btedit.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         h_btedit.setText("EDIT");
+        h_btedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                h_bteditActionPerformed(evt);
+            }
+        });
 
         h_bthapus.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
         h_bthapus.setText("HAPUS");
+        h_bthapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                h_bthapusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,21 +331,22 @@ private static Connection con;
 
     private void h_idsantriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_h_idsantriKeyPressed
         // TODO add your handling code here:
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        try {
-            String Cari = "select * from penilaian where id_siswi=?";
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                String Cari = "select * from penilaian where id_siswi=?";
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
                 PreparedStatement UR = con.prepareStatement(Cari);
-                UR.setString(1,h_idsantri.getText());
+                UR.setString(1, h_idsantri.getText());
                 ResultSet UL = UR.executeQuery();
                 while (UL.next()) {
                     h_namasantri.setText(UL.getString(2));
                 }
 
-        } catch (Exception e) {
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
         }
-         }
     }//GEN-LAST:event_h_idsantriKeyPressed
 
     private void h_bttambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h_bttambahActionPerformed
@@ -355,8 +373,76 @@ private static Connection con;
             tl.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan");
         } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_h_bttambahActionPerformed
+
+    private void h_bteditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h_bteditActionPerformed
+        // TODO add your handling code here:
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String Tanggal = String.valueOf(sdf.format(h_tanggal.getDate()));
+            String sql = "UPDATE penilaian SET setoran_ke=?,"
+                    + "id_siswi=?,nama=?,id_pentashih=?,nama_pentashih=?,"
+                    + "tanggal=?,surat=?,dari=?,sampai=?,nilai=?,keterangan=? WHERE id_penilaian=?";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            PreparedStatement tl = koneksi.prepareStatement(sql);
+            tl.setString(12, h_idpenilaian.getText());
+            tl.setString(1, h_setoranke.getText());
+            tl.setString(2, h_idsantri.getText());
+            tl.setString(3, h_namasantri.getText());
+            tl.setString(4, h_idpentashih.getText());
+            tl.setString(5, h_namapentashih.getText());
+            tl.setString(6, Tanggal);
+            tl.setString(7, h_cbsurat.getSelectedItem().toString());
+            tl.setString(8, h_dari.getText());
+            tl.setString(9, h_sampai.getText());
+            tl.setString(10, h_nilai.getText());
+            tl.setString(11, h_keterangan.getText());
+            tl.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Edit");
+        } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_h_bteditActionPerformed
+
+    private void h_bthapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h_bthapusActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sql = "DELETE FROM penilaian WHERE 0 where no_pendaftar=?";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            PreparedStatement tulis = koneksi.prepareStatement(sql);
+            tulis.setString(1, h_idpenilaian.getText());
+            tulis.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus ");
+            bersih();
+            //refresh();
+            //Tampil_Tabel();
+            //input();
+            autokode();
+        } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_h_bthapusActionPerformed
+
+    private void h_nilaiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_h_nilaiKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                String coba = h_nilai.getText();
+                Integer aa = Integer.parseInt(coba);
+                if (aa > 89) {
+                    h_keterangan.setText("Lulus");
+                } else {
+                    h_keterangan.setText("Gak Lulus");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        }
+    }//GEN-LAST:event_h_nilaiKeyPressed
 
     /**
      * @param args the command line arguments
@@ -399,6 +485,7 @@ private static Connection con;
             }
         });
     }
+
     private void autokode() {
         try {
 
@@ -415,7 +502,7 @@ private static Connection con;
                     String no = String.valueOf(auto_id);
                     int nolong = no.length();
                     for (int a = 0; a < 3 - nolong; a++) {
-                        no = "0"+ no;
+                        no = "0" + no;
                     }
 
                     h_idpenilaian.setText(no);
@@ -426,6 +513,21 @@ private static Connection con;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR:\n" + e.toString(), "kesalahan", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    public void bersih() {
+        h_idpenilaian.setText(null);
+        h_setoranke.setText(null);
+        h_idsantri.setText(null);
+        h_namasantri.setText(null);
+        h_idpentashih.setText(null);
+        h_namapentashih.setText(null);
+        h_cbsurat.setSelectedIndex(0);
+        h_dari.setText(null);
+        h_sampai.setText(null);
+        h_nilai.setText(null);
+        h_keterangan.setText(null);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
