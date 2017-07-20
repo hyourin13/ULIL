@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -68,6 +70,8 @@ public class form_petugas extends javax.swing.JDialog {
         u_bthapus = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         u_alamat = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -107,42 +111,63 @@ public class form_petugas extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         jLabel5.setText("Alamat");
 
+        jButton1.setText("Bersih");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Cari");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(u_bttambah)
-                .addGap(18, 18, 18)
-                .addComponent(u_btedit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(u_bthapus)
-                .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(u_idpetugas)
-                    .addComponent(u_nama)
-                    .addComponent(u_passwort)
-                    .addComponent(u_jabatan, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                    .addComponent(u_alamat))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(u_idpetugas)
+                            .addComponent(u_nama)
+                            .addComponent(u_passwort)
+                            .addComponent(u_jabatan, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                            .addComponent(u_alamat))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(u_bttambah)
+                        .addGap(18, 18, 18)
+                        .addComponent(u_btedit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(u_bthapus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(u_idpetugas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(u_idpetugas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -159,15 +184,16 @@ public class form_petugas extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(u_jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(u_bttambah)
                     .addComponent(u_btedit)
-                    .addComponent(u_bthapus))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(u_bthapus)
+                    .addComponent(jButton1))
+                .addGap(33, 33, 33))
         );
 
-        setBounds(0, 0, 322, 380);
+        setBounds(0, 0, 392, 380);
     }// </editor-fold>//GEN-END:initComponents
 
     private void u_bttambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_u_bttambahActionPerformed
@@ -185,10 +211,11 @@ public class form_petugas extends javax.swing.JDialog {
             UR.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data Tersimpan");
             bersih();
+             autokode();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
-        autokode();
+       
     }//GEN-LAST:event_u_bttambahActionPerformed
 
     private void u_bthapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_u_bthapusActionPerformed
@@ -222,10 +249,45 @@ public class form_petugas extends javax.swing.JDialog {
             update.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data Sudah Di Edit");
             bersih();
+            autokode();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_u_bteditActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        bersih();
+        autokode();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+   
+        try {
+            String query = "SELECT * FROM petugas WHERE kode_petugas = '" + u_idpetugas.getText() + "'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+
+                String np = rs.getString("kode_petugas");
+                String nama = rs.getString("nama");
+                String jengkeldb = rs.getString("Password");
+                String tempat_lahirdb = rs.getString("alamat");
+                String tanggal_lahirdb = rs.getString("jabatan");
+   
+                u_idpetugas.setText(np);
+                u_nama.setText(nama);
+                u_passwort.setText(jengkeldb);
+                u_alamat.setText(tempat_lahirdb);
+                u_jabatan.setText(tanggal_lahirdb);
+      
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,20 +334,20 @@ public class form_petugas extends javax.swing.JDialog {
     private void autokode() {
         try {
 
-            String query = "SELECT MAX(right(no_pendaftar,5))AS no FROM pdb";
+            String query = "SELECT MAX(right(kode_petugas,2))AS no FROM petugas";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
                 if (rs.first() == false) {
-                    u_idpetugas.setText("01");
+                    u_idpetugas.setText("001");
                 } else {
                     rs.last();
                     int auto_id = rs.getInt(1) + 1;
                     String no = String.valueOf(auto_id);
                     int nolong = no.length();
-                    for (int a = 0; a < 6 - nolong; a++) {
-                        no = "0" + no;
+                    for (int a = 0; a < 2 - nolong; a++) {
+                        no = "00" + no;
                     }
 
                     u_idpetugas.setText(no);
@@ -298,6 +360,8 @@ public class form_petugas extends javax.swing.JDialog {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

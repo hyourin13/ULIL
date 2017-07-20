@@ -74,6 +74,7 @@ public class form_datatahfidz extends javax.swing.JDialog {
         t_edit = new javax.swing.JButton();
         t_hapus = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -185,6 +186,15 @@ public class form_datatahfidz extends javax.swing.JDialog {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(292, 69, 53, 32);
+
+        jButton2.setText("BERSIH");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(100, 310, 77, 32);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/latar1.jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -361,6 +371,12 @@ public class form_datatahfidz extends javax.swing.JDialog {
        
     }//GEN-LAST:event_t_hapusActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        bersih();
+        autokode3();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,6 +465,7 @@ public class form_datatahfidz extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

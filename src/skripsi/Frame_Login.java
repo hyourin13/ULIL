@@ -116,6 +116,7 @@ public class Frame_Login extends javax.swing.JFrame {
             if (RS.next()) {
                 JOptionPane.showMessageDialog(this, "Login Berhasil", "Info", JOptionPane.INFORMATION_MESSAGE);
                 new Frame_Menu().show();
+               
                 // AQ.setVisible(true);
                 //this.dispose();
             } else {

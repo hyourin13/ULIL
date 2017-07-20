@@ -7,6 +7,7 @@ package skripsi;
 
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,164 +41,284 @@ public class Frame_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bt_data_pdb = new javax.swing.JButton();
-        bt_data_tahfidz = new javax.swing.JButton();
-        bt_nilai_harian = new javax.swing.JButton();
-        bt_pentashih = new javax.swing.JButton();
-        bt_petugas = new javax.swing.JButton();
-        bt_tes_seleksi = new javax.swing.JButton();
-        bt_ujian = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+
+        jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem15.setText("jMenuItem15");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bt_data_pdb.setText("Data PDB");
-        bt_data_pdb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_data_pdbActionPerformed(evt);
-            }
-        });
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/menu5.jpg"))); // NOI18N
 
-        bt_data_tahfidz.setText("Data Tahfidz");
-        bt_data_tahfidz.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_data_tahfidzActionPerformed(evt);
-            }
-        });
+        jMenu1.setText("MASTER");
 
-        bt_nilai_harian.setText("Penilaian Harian");
-        bt_nilai_harian.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Data PDB");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_nilai_harianActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem3);
 
-        bt_pentashih.setText("Pentashih");
-        bt_pentashih.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem4.setText("Data Tahfidz");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_pentashihActionPerformed(evt);
+                jMenuItem4ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem4);
 
-        bt_petugas.setText("Petugas");
-        bt_petugas.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("Data Petugas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_petugasActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem1);
 
-        bt_tes_seleksi.setText("Tes Seleksi");
-        bt_tes_seleksi.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem5.setText("Data Pentashih");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_tes_seleksiActionPerformed(evt);
+                jMenuItem5ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem5);
 
-        bt_ujian.setText("Ujian");
-        bt_ujian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_ujianActionPerformed(evt);
-            }
-        });
+        jMenuBar1.add(jMenu1);
 
-        jButton1.setText("Close");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jMenu2.setText("TRANSAKSI");
+
+        jMenuItem6.setText("Nilai Harian");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jMenuItem6ActionPerformed(evt);
             }
         });
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setText("Tes Seleksi");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
+
+        jMenuItem8.setText("Ujian Triwulan");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("LAPORAN");
+
+        jMenuItem9.setText("Data PDB");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem9);
+
+        jMenuItem10.setText("Data Tahfidz");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem10);
+
+        jMenuItem11.setText("Data Petugas");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem11);
+
+        jMenuItem12.setText("Data Pentashih");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem12);
+
+        jMenuItem13.setText("Data Nilai Harian");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem13);
+
+        jMenuItem14.setText("Data NIlai Seleksi");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem14);
+
+        jMenuItem16.setText("Data Nilai Ujian Triwulan");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem16);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("LOG OUT");
+        jMenu4.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu4MenuSelected(evt);
+            }
+        });
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bt_data_pdb)
-                            .addComponent(bt_nilai_harian)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(bt_petugas)))
-                .addGap(86, 86, 86)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bt_tes_seleksi)
-                    .addComponent(bt_pentashih)
-                    .addComponent(bt_data_tahfidz))
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(bt_ujian))
-                .addGap(133, 133, 133))
+            .addGap(0, 1341, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_data_pdb)
-                    .addComponent(bt_data_tahfidz))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_nilai_harian)
-                    .addComponent(bt_pentashih))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_petugas)
-                    .addComponent(bt_tes_seleksi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bt_ujian)
-                .addContainerGap(13, Short.MAX_VALUE))
+            .addGap(0, 698, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bt_data_pdbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_data_pdbActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-       new form_data_pdb(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_bt_data_pdbActionPerformed
+         new form_petugas(this, rootPaneCheckingEnabled).show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.setVisible(false);
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+          this.setVisible(false);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jMenu4ActionPerformed
 
-    private void bt_data_tahfidzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_data_tahfidzActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-          new form_datatahfidz(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_bt_data_tahfidzActionPerformed
+         new form_data_pdb(this, rootPaneCheckingEnabled).show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void bt_nilai_harianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_nilai_harianActionPerformed
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-          new form_penilaianharian(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_bt_nilai_harianActionPerformed
+          new Jdialog_datatahfidz(this, rootPaneCheckingEnabled).show();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void bt_pentashihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pentashihActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
           new form_pentashih(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_bt_pentashihActionPerformed
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void bt_petugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_petugasActionPerformed
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-          new form_petugas(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_bt_petugasActionPerformed
+         new form_penilaianharian(this, rootPaneCheckingEnabled).show();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void bt_tes_seleksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_tes_seleksiActionPerformed
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-          new form_tesseleksi(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_bt_tes_seleksiActionPerformed
+         new form_tesseleksi(this, rootPaneCheckingEnabled).show();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void bt_ujianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ujianActionPerformed
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-          new form_ujiantriwulan(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_bt_ujianActionPerformed
+         new form_ujiantriwulan(this, rootPaneCheckingEnabled).show();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenu4MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu4MenuSelected
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jMenu4MenuSelected
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Sek Belum");
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(this, "Sek Belum");
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(this, "Sek Belum");
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(this, "Sek Belum");
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(this, "Sek Belum");
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(this, "Sek Belum");
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(this, "Sek Belum");
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,13 +357,27 @@ public class Frame_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt_data_pdb;
-    private javax.swing.JButton bt_data_tahfidz;
-    private javax.swing.JButton bt_nilai_harian;
-    private javax.swing.JButton bt_pentashih;
-    private javax.swing.JButton bt_petugas;
-    private javax.swing.JButton bt_tes_seleksi;
-    private javax.swing.JButton bt_ujian;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }

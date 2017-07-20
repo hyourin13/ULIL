@@ -10,13 +10,12 @@ package skripsi;
  *
  * @author Ulil_Mz
  */
-public class form_menu extends javax.swing.JDialog {
+public class form_menu extends  javax.swing.JFrame {
 
     /**
      * Creates new form form_menu
      */
     public form_menu(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
