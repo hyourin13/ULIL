@@ -5,13 +5,17 @@
  */
 package skripsi;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,7 +38,7 @@ public class form_petugas extends javax.swing.JDialog {
         } catch (Exception e) {
         }
         setLocationRelativeTo(null);
-
+        bersih();
         autokode();
 
     }
@@ -45,7 +49,10 @@ public class form_petugas extends javax.swing.JDialog {
         u_passwort.setText(null);
         u_alamat.setText(null);
         u_jabatan.setText(null);
-
+        u_idpetugas.setEnabled(false);
+        u_btedit.setEnabled(false);
+        u_bthapus.setEnabled(false);
+        u_bttambah.setEnabled(true);
     }
 
     /**
@@ -86,6 +93,12 @@ public class form_petugas extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         jLabel4.setText("Jabatan");
+
+        u_idpetugas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                u_idpetugasKeyPressed(evt);
+            }
+        });
 
         u_bttambah.setText("SIMPAN");
         u_bttambah.addActionListener(new java.awt.event.ActionListener() {
@@ -211,11 +224,11 @@ public class form_petugas extends javax.swing.JDialog {
             UR.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data Tersimpan");
             bersih();
-             autokode();
+            autokode();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
-       
+
     }//GEN-LAST:event_u_bttambahActionPerformed
 
     private void u_bthapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_u_bthapusActionPerformed
@@ -241,17 +254,19 @@ public class form_petugas extends javax.swing.JDialog {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
             PreparedStatement update = con.prepareStatement(sql);
-            update.setString(1, u_idpetugas.getText());
-            update.setString(2, u_nama.getText());
-            update.setString(3, u_passwort.getText());
-            update.setString(4, u_alamat.getText());
-            update.setString(5, u_jabatan.getText());
+            update.setString(5, u_idpetugas.getText());
+            update.setString(1, u_nama.getText());
+            update.setString(2, u_passwort.getText());
+            update.setString(3, u_alamat.getText());
+            update.setString(4, u_jabatan.getText());
             update.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data Sudah Di Edit");
             bersih();
             autokode();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, e);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_u_bteditActionPerformed
 
@@ -263,31 +278,48 @@ public class form_petugas extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-   
-        try {
-            String query = "SELECT * FROM petugas WHERE kode_petugas = '" + u_idpetugas.getText() + "'";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
+        u_idpetugas.setEnabled(true);
+        u_btedit.setEnabled(true);
+        u_bthapus.setEnabled(true);
+        u_bttambah.setEnabled(false);
 
-            while (rs.next()) {
-
-                String np = rs.getString("kode_petugas");
-                String nama = rs.getString("nama");
-                String jengkeldb = rs.getString("Password");
-                String tempat_lahirdb = rs.getString("alamat");
-                String tanggal_lahirdb = rs.getString("jabatan");
-   
-                u_idpetugas.setText(np);
-                u_nama.setText(nama);
-                u_passwort.setText(jengkeldb);
-                u_alamat.setText(tempat_lahirdb);
-                u_jabatan.setText(tanggal_lahirdb);
-      
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void u_idpetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_u_idpetugasKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                try {
+                    String query = "SELECT * FROM petugas WHERE kode_petugas = '" + u_idpetugas.getText() + "'";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+
+                    while (rs.next()) {
+
+                        String np = rs.getString("kode_petugas");
+                        String nama = rs.getString("nama");
+                        String jengkeldb = rs.getString("Password");
+                        String tempat_lahirdb = rs.getString("alamat");
+                        String tanggal_lahirdb = rs.getString("jabatan");
+
+                        u_idpetugas.setText(np);
+                        u_nama.setText(nama);
+                        u_passwort.setText(jengkeldb);
+                        u_alamat.setText(tempat_lahirdb);
+                        u_jabatan.setText(tanggal_lahirdb);
+
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Tidak Ditekan Enter");
+        }
+    }//GEN-LAST:event_u_idpetugasKeyPressed
 
     /**
      * @param args the command line arguments
