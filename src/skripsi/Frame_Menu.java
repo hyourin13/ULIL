@@ -19,16 +19,15 @@ public class Frame_Menu extends javax.swing.JFrame {
      * Creates new form Frame_Menu
      */
     public Frame_Menu() {
-        //this.setUndecorated(true);
+        this.setUndecorated(true);
         this.setAlwaysOnTop(true);
         this.setResizable(false);
         this.setVisible(true);
         initComponents();
         Toolkit tk = Toolkit.getDefaultToolkit();
-         int xsize = (int) tk.getScreenSize().getWidth();
-         int ysize = (int) tk.getScreenSize().getHeight();
+        int xsize = (int) tk.getScreenSize().getWidth();
+        int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);
-        
 
     }
 
@@ -241,43 +240,43 @@ public class Frame_Menu extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-         new form_petugas(this, rootPaneCheckingEnabled).show();
+        new form_petugas(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
         // TODO add your handling code here:
-          this.setVisible(false);
+        this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jMenu4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-         new form_data_pdb(this, rootPaneCheckingEnabled).show();
+        new form_data_pdb(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-          new Jdialog_datatahfidz(this, rootPaneCheckingEnabled).show();
+        new Jdialog_datatahfidz(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-          new form_pentashih(this, rootPaneCheckingEnabled).show();
+        new form_pentashih(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-         new form_penilaianharian(this, rootPaneCheckingEnabled).show();
+        new form_penilaianharian(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-         new form_tesseleksi(this, rootPaneCheckingEnabled).show();
+        new form_tesseleksi(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-         new form_ujiantriwulan(this, rootPaneCheckingEnabled).show();
+        new form_ujiantriwulan(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenu4MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu4MenuSelected
@@ -287,37 +286,43 @@ public class Frame_Menu extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Sek Belum");
+        new Lihat_PDB(this, rootPaneCheckingEnabled).show();
+        //JOptionPane.showMessageDialog(this, "Sek Belum");
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
-         JOptionPane.showMessageDialog(this, "Sek Belum");
+        new Lihat_Datatahfidz(this, rootPaneCheckingEnabled).show();
+        //JOptionPane.showMessageDialog(this, "Sek Belum");
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-         JOptionPane.showMessageDialog(this, "Sek Belum");
+        new Lihat_Petugas(this, rootPaneCheckingEnabled).show();
+        // JOptionPane.showMessageDialog(this, "Sek Belum");
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-         JOptionPane.showMessageDialog(this, "Sek Belum");
+        new Lihat_Pentashih(this, rootPaneCheckingEnabled).show();
+        // JOptionPane.showMessageDialog(this, "Sek Belum");
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
-         JOptionPane.showMessageDialog(this, "Sek Belum");
+        new Lihat_datanilaiharian(this, rootPaneCheckingEnabled).show();
+        // JOptionPane.showMessageDialog(this, "Sek Belum");
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-         JOptionPane.showMessageDialog(this, "Sek Belum");
+        new Lihat_tesseleksi(this, rootPaneCheckingEnabled).show();
+        // JOptionPane.showMessageDialog(this, "Sek Belum");
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-         JOptionPane.showMessageDialog(this, "Sek Belum");
+        JOptionPane.showMessageDialog(this, "Sek Belum");
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
@@ -350,8 +355,8 @@ public class Frame_Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new Frame_Menu().setVisible(true);
-             
+                new Frame_Menu().setVisible(true);
+
             }
         });
     }
