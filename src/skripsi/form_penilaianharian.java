@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +22,9 @@ import javax.swing.JOptionPane;
  * @author Ulil_Mz
  */
 public class form_penilaianharian extends javax.swing.JDialog {
-private static Connection con;
+
+    private static Connection con;
+
     /**
      * Creates new form form_penilaianharian
      */
@@ -32,9 +35,12 @@ private static Connection con;
             con = koneksidb.getConnection();
             System.out.println("Koneksi Sukses");
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Masalah Koneksi");
         }
         setLocationRelativeTo(null);
+        bersih();
         autokode();
+
     }
 
     /**
@@ -79,6 +85,8 @@ private static Connection con;
         h_bttambah = new javax.swing.JButton();
         h_btedit = new javax.swing.JButton();
         h_bthapus = new javax.swing.JButton();
+        bttt_bersih = new javax.swing.JButton();
+        btttt_cari = new javax.swing.JButton();
 
         jLabel4.setText("jLabel4");
 
@@ -96,6 +104,12 @@ private static Connection con;
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         jLabel3.setText("Nama");
+
+        h_idpenilaian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                h_idpenilaianKeyPressed(evt);
+            }
+        });
 
         h_idsantri.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -116,6 +130,12 @@ private static Connection con;
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         jLabel9.setText("Tanggal");
+
+        h_idpentashih.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                h_idpentashihKeyPressed(evt);
+            }
+        });
 
         h_namapentashih.setText("...........................");
 
@@ -145,6 +165,11 @@ private static Connection con;
                 h_nilaiActionPerformed(evt);
             }
         });
+        h_nilai.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                h_nilaiKeyPressed(evt);
+            }
+        });
 
         h_keterangan.setText("...............");
 
@@ -158,9 +183,33 @@ private static Connection con;
 
         h_btedit.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         h_btedit.setText("EDIT");
+        h_btedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                h_bteditActionPerformed(evt);
+            }
+        });
 
         h_bthapus.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
         h_bthapus.setText("HAPUS");
+        h_bthapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                h_bthapusActionPerformed(evt);
+            }
+        });
+
+        bttt_bersih.setText("Bersih");
+        bttt_bersih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttt_bersihActionPerformed(evt);
+            }
+        });
+
+        btttt_cari.setText("Cari");
+        btttt_cari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btttt_cariActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,20 +243,27 @@ private static Connection con;
                                                 .addComponent(h_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel8))
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(h_namapentashih, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(h_namasantri)
-                                    .addComponent(h_setoranke, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(h_setoranke, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(16, 16, 16))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btttt_cari)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel8))
+                                            .addGap(64, 64, 64)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(h_namapentashih, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(h_namasantri))))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 1, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +291,9 @@ private static Connection con;
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addGap(8, 8, 8)
+                .addComponent(bttt_bersih)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(h_bttambah)
                 .addGap(18, 18, 18)
                 .addComponent(h_btedit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,17 +309,18 @@ private static Connection con;
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(h_idpenilaian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(h_setoranke, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(h_idpenilaian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(h_idsantri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(h_namasantri)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btttt_cari)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(h_namasantri))))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -271,7 +330,10 @@ private static Connection con;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9)
-                    .addComponent(h_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(h_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(h_setoranke, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
@@ -301,8 +363,9 @@ private static Connection con;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(h_bttambah)
                     .addComponent(h_btedit)
-                    .addComponent(h_bthapus))
-                .addContainerGap(128, Short.MAX_VALUE))
+                    .addComponent(h_bthapus)
+                    .addComponent(bttt_bersih))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 506, 573);
@@ -314,21 +377,25 @@ private static Connection con;
 
     private void h_idsantriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_h_idsantriKeyPressed
         // TODO add your handling code here:
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        try {
-            String Cari = "select * from penilaian where id_siswi=?";
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                String Cari = "select * from peserta_tahfidz where no_induk=?";
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
                 PreparedStatement UR = con.prepareStatement(Cari);
-                UR.setString(1,h_idsantri.getText());
+                UR.setString(1, h_idsantri.getText());
                 ResultSet UL = UR.executeQuery();
-                while (UL.next()) {
+                if (UL.next()) {
                     h_namasantri.setText(UL.getString(2));
+                } else {
+                    JOptionPane.showMessageDialog(this, "Data Tidak Ditemukan");
+                    h_namasantri.setText(".........................");
                 }
 
-        } catch (Exception e) {
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
         }
-         }
     }//GEN-LAST:event_h_idsantriKeyPressed
 
     private void h_bttambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h_bttambahActionPerformed
@@ -355,8 +422,166 @@ private static Connection con;
             tl.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan");
         } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_h_bttambahActionPerformed
+
+    private void h_bteditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h_bteditActionPerformed
+        // TODO add your handling code here:
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String Tanggal = String.valueOf(sdf.format(h_tanggal.getDate()));
+            String sql = "UPDATE penilaian SET setoran_ke=?,"
+                    + "id_siswi=?,nama=?,id_pentashih=?,nama_pentashih=?,"
+                    + "tanggal=?,surat=?,dari=?,sampai=?,nilai=?,keterangan=? WHERE id_penilaian=?";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            PreparedStatement tl = koneksi.prepareStatement(sql);
+            tl.setString(12, h_idpenilaian.getText());
+            tl.setString(1, h_setoranke.getText());
+            tl.setString(2, h_idsantri.getText());
+            tl.setString(3, h_namasantri.getText());
+            tl.setString(4, h_idpentashih.getText());
+            tl.setString(5, h_namapentashih.getText());
+            tl.setString(6, Tanggal);
+            tl.setString(7, h_cbsurat.getSelectedItem().toString());
+            tl.setString(8, h_dari.getText());
+            tl.setString(9, h_sampai.getText());
+            tl.setString(10, h_nilai.getText());
+            tl.setString(11, h_keterangan.getText());
+            tl.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Edit");
+        } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_h_bteditActionPerformed
+
+    private void h_bthapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_h_bthapusActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sql = "DELETE FROM penilaian WHERE 0 where no_pendaftar=?";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            PreparedStatement tulis = koneksi.prepareStatement(sql);
+            tulis.setString(1, h_idpenilaian.getText());
+            tulis.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus ");
+            bersih();
+            //refresh();
+            //Tampil_Tabel();
+            //input();
+            autokode();
+        } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_h_bthapusActionPerformed
+
+    private void h_nilaiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_h_nilaiKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                String coba = h_nilai.getText();
+                Integer aa = Integer.parseInt(coba);
+                if (aa > 89) {
+                    h_keterangan.setText("Lulus");
+                } else {
+                    h_keterangan.setText("Gak Lulus");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        }
+    }//GEN-LAST:event_h_nilaiKeyPressed
+
+    private void h_idpentashihKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_h_idpentashihKeyPressed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                String Cari = "select * from pentashih where id_pentashih=?";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement UR = con.prepareStatement(Cari);
+                UR.setString(1, h_idpentashih.getText());
+                ResultSet UL = UR.executeQuery();
+                if (UL.next()) {
+                    h_namapentashih.setText(UL.getString(2));
+                } else {
+                    JOptionPane.showMessageDialog(this, "Data Tidak Ditemukan");
+                    h_namapentashih.setText(".........................");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        }
+    }//GEN-LAST:event_h_idpentashihKeyPressed
+
+    private void bttt_bersihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttt_bersihActionPerformed
+        // TODO add your handling code here:
+        bersih();
+    }//GEN-LAST:event_bttt_bersihActionPerformed
+
+    private void btttt_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btttt_cariActionPerformed
+        // TODO add your handling code here:
+        h_btedit.setEnabled(true);
+        h_bthapus.setEnabled(true);
+        h_bttambah.setEnabled(false);
+        h_idpenilaian.setEnabled(true);
+    }//GEN-LAST:event_btttt_cariActionPerformed
+
+    private void h_idpenilaianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_h_idpenilaianKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                //String Tanggal = String.valueOf(sdf.format(J_date.getDate()));
+                Date dateValue = null;
+                String Cari = "select * from penilaian where id_penilaian=?";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement UR = con.prepareStatement(Cari);
+                UR.setString(1, h_idpenilaian.getText());
+                ResultSet UL = UR.executeQuery();
+                if (UL.next()) {
+
+                    String id_penilaian = UL.getString("id_penilaian");
+                    String setoran_ke = UL.getString("setoran_ke");
+                    String id_siswi = UL.getString("id_siswi");
+                    String nama = UL.getString("nama");
+                    String id_pentashih = UL.getString("id_pentashih");
+                    String nama_pentashih = UL.getString("nama_pentashih");
+                    String tanggal = UL.getString("tanggal");
+                    String surat = UL.getString("surat");
+                    String dari = UL.getString("dari");
+                    String sampai = UL.getString("sampai");
+                    String nilai = UL.getString("nilai");
+                    String keterangan = UL.getString("keterangan");
+
+                    h_idpenilaian.setText(id_penilaian);
+                    h_setoranke.setText(setoran_ke);
+                    h_idsantri.setText(id_siswi);
+                    h_namasantri.setText(nama);
+                    h_idpentashih.setText(id_pentashih);
+                    h_namapentashih.setText(nama_pentashih);
+                    dateValue = sdf.parse(tanggal);
+                    h_tanggal.setDate(dateValue);
+                    h_cbsurat.setSelectedItem(surat);
+                    h_dari.setText(dari);
+                    h_sampai.setText(sampai);
+                    h_nilai.setText(nilai);
+                    h_keterangan.setText(keterangan);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Data Tidak Ditemukan");
+                    h_namasantri.setText(".........................");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        }
+    }//GEN-LAST:event_h_idpenilaianKeyPressed
 
     /**
      * @param args the command line arguments
@@ -399,6 +624,7 @@ private static Connection con;
             }
         });
     }
+
     private void autokode() {
         try {
 
@@ -415,7 +641,7 @@ private static Connection con;
                     String no = String.valueOf(auto_id);
                     int nolong = no.length();
                     for (int a = 0; a < 3 - nolong; a++) {
-                        no = "0"+ no;
+                        no = "0" + no;
                     }
 
                     h_idpenilaian.setText(no);
@@ -428,7 +654,28 @@ private static Connection con;
         }
     }
 
+    public void bersih() {
+        h_idpenilaian.setText(null);
+        h_setoranke.setText(null);
+        h_idsantri.setText(null);
+        h_namasantri.setText(null);
+        h_idpentashih.setText(null);
+        h_namapentashih.setText(null);
+        h_cbsurat.setSelectedIndex(0);
+        h_dari.setText(null);
+        h_sampai.setText(null);
+        h_nilai.setText(null);
+        h_keterangan.setText(null);
+        h_btedit.setEnabled(false);
+        h_bthapus.setEnabled(false);
+        h_bttambah.setEnabled(true);
+        h_idpenilaian.setEnabled(false);
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttt_bersih;
+    private javax.swing.JButton btttt_cari;
     private javax.swing.JButton h_btedit;
     private javax.swing.JButton h_bthapus;
     private javax.swing.JButton h_bttambah;

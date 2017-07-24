@@ -6,6 +6,7 @@
 package skripsi;
 
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,6 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import static sun.security.krb5.Config.refresh;
 
 /**
  *
@@ -33,7 +33,7 @@ public class form_data_pdb extends javax.swing.JDialog {
     public form_data_pdb(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         
+
         try {
             con = koneksidb.getConnection();
             System.out.println("Koneksi Sukses");
@@ -50,7 +50,14 @@ public class form_data_pdb extends javax.swing.JDialog {
         p_penayah.setSelectedItem(null);
         p_pendibu.setSelectedItem(null);
         setLocationRelativeTo(null);
+        p_pendaftaran.setEnabled(false);
+        p_edit.setEnabled(false);
+        p_hapus.setEnabled(false);
 
+    }
+
+    form_data_pdb() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -106,6 +113,7 @@ public class form_data_pdb extends javax.swing.JDialog {
         p_pendibu = new javax.swing.JComboBox();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        p_bersih = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
@@ -188,6 +196,12 @@ public class form_data_pdb extends javax.swing.JDialog {
         jLabel15.setText("Pendidikan Ibu");
         getContentPane().add(jLabel15);
         jLabel15.setBounds(370, 280, 80, 16);
+
+        p_pendaftaran.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                p_pendaftaranKeyPressed(evt);
+            }
+        });
         getContentPane().add(p_pendaftaran);
         p_pendaftaran.setBounds(146, 40, 95, 30);
         getContentPane().add(p_nama);
@@ -231,11 +245,11 @@ public class form_data_pdb extends javax.swing.JDialog {
         getContentPane().add(p_nope);
         p_nope.setBounds(520, 320, 129, 30);
         getContentPane().add(p_date);
-        p_date.setBounds(223, 166, 91, 30);
+        p_date.setBounds(223, 166, 123, 30);
 
         jLabel21.setText("Alamat Lengkap ");
         getContentPane().add(jLabel21);
-        jLabel21.setBounds(371, 110, 79, 14);
+        jLabel21.setBounds(371, 110, 95, 16);
         getContentPane().add(p_alamat);
         p_alamat.setBounds(524, 110, 161, 76);
 
@@ -277,15 +291,15 @@ public class form_data_pdb extends javax.swing.JDialog {
 
         p_cbadmin.setText("Administrasi");
         getContentPane().add(p_cbadmin);
-        p_cbadmin.setBounds(520, 360, 110, 23);
+        p_cbadmin.setBounds(520, 360, 110, 24);
 
         p_cbfoto.setText("Foto 3 X 4");
         getContentPane().add(p_cbfoto);
-        p_cbfoto.setBounds(520, 380, 110, 23);
+        p_cbfoto.setBounds(520, 380, 110, 24);
 
         p_cbijazah.setText("Foto Copy Ijazah");
         getContentPane().add(p_cbijazah);
-        p_cbijazah.setBounds(520, 400, 110, 23);
+        p_cbijazah.setBounds(520, 400, 110, 24);
 
         p_penayah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SD/MI", "SLTP/MTs", "SLTA/MA", "SI/DiPLOMA" }));
         getContentPane().add(p_penayah);
@@ -298,12 +312,21 @@ public class form_data_pdb extends javax.swing.JDialog {
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Laki-Laki");
         getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(146, 122, 65, 23);
+        jRadioButton1.setBounds(146, 122, 84, 28);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Perempuan");
         getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(230, 120, 90, 23);
+        jRadioButton2.setBounds(230, 120, 90, 28);
+
+        p_bersih.setText("Bersih");
+        p_bersih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                p_bersihActionPerformed(evt);
+            }
+        });
+        getContentPane().add(p_bersih);
+        p_bersih.setBounds(70, 420, 67, 32);
 
         jButton1.setText("Cari");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -312,7 +335,7 @@ public class form_data_pdb extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(250, 40, 51, 32);
+        jButton1.setBounds(250, 40, 53, 32);
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/latar1.jpg"))); // NOI18N
         jLabel16.setText("jLabel16");
@@ -328,8 +351,8 @@ public class form_data_pdb extends javax.swing.JDialog {
     public void bersih() {
         p_pendaftaran.setText(null);
         p_nama.setText(null);
-        jRadioButton1.setSelected(true);
-        jRadioButton2.setSelected(true);
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
         p_tempat.setText(null);
         p_date.setDate(null);
         p_cbpendidikan.setSelectedItem(null);
@@ -347,6 +370,10 @@ public class form_data_pdb extends javax.swing.JDialog {
         p_cbadmin.setSelected(false);
         p_cbfoto.setSelected(false);
         p_cbijazah.setSelected(false);
+        p_pendaftaran.setEnabled(false);
+        p_edit.setEnabled(false);
+        p_hapus.setEnabled(false);
+        p_simpan.setEnabled(true);
 
     }
 
@@ -491,12 +518,13 @@ public class form_data_pdb extends javax.swing.JDialog {
             jRadioButton1.setSelected(false);
             jRadioButton2.setSelected(false);
             bersih();
+            autokode();
             //refresh();
             //Tampil_Tabel();
         } catch (ClassNotFoundException | SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(this, e);
         }
-        autokode();
+
     }//GEN-LAST:event_p_editActionPerformed
 
     private void p_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p_hapusActionPerformed
@@ -514,6 +542,7 @@ public class form_data_pdb extends javax.swing.JDialog {
             //Tampil_Tabel();
             //input();
         } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
         }
         autokode();
 
@@ -521,92 +550,116 @@ public class form_data_pdb extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        // String no_pendaftar = p_pendaftaran.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //String Tanggal = String.valueOf(sdf.format(J_date.getDate()));
-        Date dateValue = null;
-        try {
-            //String query = "SELECT * FROM tb_penilaian WHERE (no_penilaian='" + idpenilaian + "') AND (id_siswi= '"+idsiswi+"')";
-            String query = "SELECT * FROM pdb WHERE no_pendaftar = '" + p_pendaftaran.getText() + "'";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
+        p_pendaftaran.setEnabled(true);
+        p_edit.setEnabled(true);
+        p_hapus.setEnabled(true);
+        p_simpan.setEnabled(false);
 
-            while (rs.next()) {
-
-                String np = rs.getString("no_pendaftar");
-                String nama = rs.getString("nama");
-                String jengkeldb = rs.getString("jenkel");
-                String tempat_lahirdb = rs.getString("tempat_lahir");
-                String tanggal_lahirdb = rs.getString("tanggal_lahir");
-                String pendidikandb = rs.getString("pendidikan");
-                String masuk_lembagadb = rs.getString("masuk_lembaga");
-                String anak_kedb = rs.getString("anak_ke");
-                String daridb = rs.getString("dari");
-                String status_anakdb = rs.getString("status_anak");
-                String nama_ayahdb = rs.getString("nama_ayah");
-                String nama_ibudb = rs.getString("nama_ibu");
-                String alamatdb = rs.getString("alamat");
-                String penghasilan_ortudb = rs.getString("penghasilan_ortu");
-                String pendidikan_ayahdb = rs.getString("pendidikan_ayah");
-                String pendidikan_ibudb = rs.getString("pendidikan_ibu");
-                String no_hpdb = rs.getString("no_hp");
-                String administrasidb = rs.getString("administrasi");
-                String fotodb = rs.getString("foto");
-                String ijazahdb = rs.getString("ijazah");
-
-                p_pendaftaran.setText(np);
-                p_nama.setText(nama);
-                p_tempat.setText(tempat_lahirdb);
-                dateValue = sdf.parse(tanggal_lahirdb);
-                p_date.setDate(dateValue);
-                p_cbpendidikan.setSelectedItem(pendidikandb);
-                p_cbmasukL.setSelectedItem(masuk_lembagadb);
-                p_cbanakke.setSelectedItem(anak_kedb);
-                p_cbdarike.setSelectedItem(daridb);
-                p_cbstatus.setSelectedItem(status_anakdb);
-                p_nayah.setText(nama_ayahdb);
-                p_nibu.setText(nama_ibudb);
-                p_cbpenghasilan.setSelectedItem(penghasilan_ortudb);
-                p_penayah.setSelectedItem(pendidikan_ayahdb);
-                p_pendibu.setSelectedItem(pendidikan_ibudb);
-                p_alamat.setText(alamatdb);
-                p_nope.setText(no_hpdb);
-
-                if (jengkeldb.equals("Laki-Laki")) {
-                    jRadioButton1.setSelected(true);
-                    jRadioButton2.setSelected(false);
-                } else {
-                    jRadioButton2.setSelected(true);
-                    jRadioButton1.setSelected(false);
-                }
-
-                if (administrasidb.equals("Ada")) {
-                    p_cbadmin.setSelected(true);
-
-                } else {
-
-                    p_cbadmin.setSelected(false);
-                }
-                if (fotodb.equals("Ada")) {
-                    p_cbfoto.setSelected(true);
-
-                } else {
-
-                    p_cbfoto.setSelected(false);
-                }
-                if (ijazahdb.equals("Ada")) {
-                    p_cbijazah.setSelected(true);
-
-                } else {
-
-                    p_cbijazah.setSelected(false);
-                }
-
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void p_bersihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p_bersihActionPerformed
+        // TODO add your handling code here:
+        bersih();
+        autokode();
+
+    }//GEN-LAST:event_p_bersihActionPerformed
+
+    private void p_pendaftaranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_p_pendaftaranKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                // String no_pendaftar = p_pendaftaran.getText();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                //String Tanggal = String.valueOf(sdf.format(J_date.getDate()));
+                Date dateValue = null;
+                try {
+                    //String query = "SELECT * FROM tb_penilaian WHERE (no_penilaian='" + idpenilaian + "') AND (id_siswi= '"+idsiswi+"')";
+                    String query = "SELECT * FROM pdb WHERE no_pendaftar = '" + p_pendaftaran.getText() + "'";
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+
+                    while (rs.next()) {
+
+                        String np = rs.getString("no_pendaftar");
+                        String nama = rs.getString("nama");
+                        String jengkeldb = rs.getString("jenkel");
+                        String tempat_lahirdb = rs.getString("tempat_lahir");
+                        String tanggal_lahirdb = rs.getString("tanggal_lahir");
+                        String pendidikandb = rs.getString("pendidikan");
+                        String masuk_lembagadb = rs.getString("masuk_lembaga");
+                        String anak_kedb = rs.getString("anak_ke");
+                        String daridb = rs.getString("dari");
+                        String status_anakdb = rs.getString("status_anak");
+                        String nama_ayahdb = rs.getString("nama_ayah");
+                        String nama_ibudb = rs.getString("nama_ibu");
+                        String alamatdb = rs.getString("alamat");
+                        String penghasilan_ortudb = rs.getString("penghasilan_ortu");
+                        String pendidikan_ayahdb = rs.getString("pendidikan_ayah");
+                        String pendidikan_ibudb = rs.getString("pendidikan_ibu");
+                        String no_hpdb = rs.getString("no_hp");
+                        String administrasidb = rs.getString("administrasi");
+                        String fotodb = rs.getString("foto");
+                        String ijazahdb = rs.getString("ijazah");
+
+                        p_pendaftaran.setText(np);
+                        p_nama.setText(nama);
+                        p_tempat.setText(tempat_lahirdb);
+                        dateValue = sdf.parse(tanggal_lahirdb);
+                        p_date.setDate(dateValue);
+                        p_cbpendidikan.setSelectedItem(pendidikandb);
+                        p_cbmasukL.setSelectedItem(masuk_lembagadb);
+                        p_cbanakke.setSelectedItem(anak_kedb);
+                        p_cbdarike.setSelectedItem(daridb);
+                        p_cbstatus.setSelectedItem(status_anakdb);
+                        p_nayah.setText(nama_ayahdb);
+                        p_nibu.setText(nama_ibudb);
+                        p_cbpenghasilan.setSelectedItem(penghasilan_ortudb);
+                        p_penayah.setSelectedItem(pendidikan_ayahdb);
+                        p_pendibu.setSelectedItem(pendidikan_ibudb);
+                        p_alamat.setText(alamatdb);
+                        p_nope.setText(no_hpdb);
+
+                        if (jengkeldb.equals("Laki-Laki")) {
+                            jRadioButton1.setSelected(true);
+                            jRadioButton2.setSelected(false);
+                        } else {
+                            jRadioButton2.setSelected(true);
+                            jRadioButton1.setSelected(false);
+                        }
+
+                        if (administrasidb.equals("Ada")) {
+                            p_cbadmin.setSelected(true);
+
+                        } else {
+
+                            p_cbadmin.setSelected(false);
+                        }
+                        if (fotodb.equals("Ada")) {
+                            p_cbfoto.setSelected(true);
+
+                        } else {
+
+                            p_cbfoto.setSelected(false);
+                        }
+                        if (ijazahdb.equals("Ada")) {
+                            p_cbijazah.setSelected(true);
+
+                        } else {
+
+                            p_cbijazah.setSelected(false);
+                        }
+
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Tidak Ditekan Enter");
+        }
+    }//GEN-LAST:event_p_pendaftaranKeyPressed
 
     /**
      * @param args the command line arguments
@@ -705,6 +758,7 @@ public class form_data_pdb extends javax.swing.JDialog {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField p_alamat;
+    private javax.swing.JButton p_bersih;
     private javax.swing.JCheckBox p_cbadmin;
     private javax.swing.JComboBox p_cbanakke;
     private javax.swing.JComboBox p_cbdarike;

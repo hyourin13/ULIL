@@ -5,11 +5,25 @@
  */
 package skripsi;
 
+import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ulil_Mz
  */
 public class form_pentashih extends javax.swing.JDialog {
+
+    private static Connection con;
 
     /**
      * Creates new form form_pentashih
@@ -18,6 +32,48 @@ public class form_pentashih extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        bersih();
+        autokode();
+    }
+
+    private void autokode() {
+        try {
+
+            String query = "SELECT MAX(right(id_pentashih,2))AS no FROM pentashih";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            Statement st = koneksi.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String np = rs.getString("no");
+                Integer ai = Integer.parseInt(np);
+                Integer ai2 = ai + 1;
+                String ai3 = String.valueOf(ai2);
+                int nolong = ai3.length();
+                String no = null;
+                for (int a = 0; a < 3 - nolong; a++) {
+                    no = "00" + ai3;
+                }
+                e_idpentashih.setText(no);
+                //System.out.print(no);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR:\n" + e.toString(), "kesalahan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public void bersih() {
+        e_idpentashih.setText(null);
+        e_nama.setText(null);
+        e_tempat.setText(null);
+        e_tanggal.setDate(null);
+        e_alamat.setText(null);
+        e_btedit.setEnabled(false);
+        e_bthapus.setEnabled(false);
+        e_idpentashih.setEnabled(false);
+        e_bttambah.setEnabled(true);
     }
 
     /**
@@ -42,6 +98,8 @@ public class form_pentashih extends javax.swing.JDialog {
         e_bttambah = new javax.swing.JButton();
         e_btedit = new javax.swing.JButton();
         e_bthapus = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,6 +110,12 @@ public class form_pentashih extends javax.swing.JDialog {
         jLabel3.setText("Tempat dan Tanggal Lahir");
 
         jLabel4.setText("Alamat");
+
+        e_idpentashih.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                e_idpentashihKeyPressed(evt);
+            }
+        });
 
         e_bttambah.setText("TAMBAH");
         e_bttambah.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +132,25 @@ public class form_pentashih extends javax.swing.JDialog {
         });
 
         e_bthapus.setText("HAPUS");
+        e_bthapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                e_bthapusActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Bersih");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Cari");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,42 +162,48 @@ public class form_pentashih extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jSeparator1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(e_bttambah)
-                        .addGap(18, 18, 18)
-                        .addComponent(e_btedit, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(e_bthapus)
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(e_tempat, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(e_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(e_alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2))
+                                    .addGap(74, 74, 74)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(e_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(e_idpentashih, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(e_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(e_idpentashih, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(e_tempat, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(e_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(e_alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(e_bttambah)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(e_btedit, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(e_bthapus)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(21, 21, 21)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(e_idpentashih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,12 +223,17 @@ public class form_pentashih extends javax.swing.JDialog {
                     .addComponent(e_alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(e_bttambah)
-                    .addComponent(e_btedit)
-                    .addComponent(e_bthapus))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(e_bttambah)
+                            .addComponent(e_btedit)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(e_bthapus)))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 406, 529);
@@ -147,11 +241,141 @@ public class form_pentashih extends javax.swing.JDialog {
 
     private void e_bttambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_e_bttambahActionPerformed
         // TODO add your handling code here:
+        if ((e_idpentashih.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Isi Data dengan Lengkap!");
+        } else {
+            try {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String Tanggal = String.valueOf(sdf.format(e_tanggal.getDate()));
+
+                String sql = "insert into pentashih values (?,?,?,?,?)";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement tulis = koneksi.prepareStatement(sql);
+                tulis.setString(1, e_idpentashih.getText());
+                tulis.setString(2, e_nama.getText());
+                tulis.setString(3, e_tempat.getText());
+                tulis.setString(4, Tanggal);
+                tulis.setString(5, e_alamat.getText());
+                tulis.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan");
+                bersih();
+                autokode();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_e_bttambahActionPerformed
 
     private void e_bteditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_e_bteditActionPerformed
         // TODO add your handling code here:
+        if ((e_idpentashih.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Isi Data dengan Lengkap!");
+        } else {
+            try {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String Tanggal = String.valueOf(sdf.format(e_tanggal.getDate()));
+
+                String sql = "UPDATE pentashih SET nama=?,tempat=?,"
+                        + "tanggal_lahir=?,alamat=? WHERE id_pentashih=?";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement tulis = koneksi.prepareStatement(sql);
+                tulis.setString(5, e_idpentashih.getText());
+                tulis.setString(1, e_nama.getText());
+                tulis.setString(2, e_tempat.getText());
+                tulis.setString(3, Tanggal);
+                tulis.setString(4, e_alamat.getText());
+                tulis.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil Di Edit");
+                bersih();
+                autokode();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_e_bteditActionPerformed
+
+    private void e_bthapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_e_bthapusActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sql = "Delete from pentashih where id_pentashih=?";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            PreparedStatement tulis = koneksi.prepareStatement(sql);
+            tulis.setString(1, e_idpentashih.getText());
+            tulis.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus ");
+            bersih();
+            autokode();
+        } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_e_bthapusActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        bersih();
+        autokode();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        e_btedit.setEnabled(true);
+        e_bthapus.setEnabled(true);
+        e_idpentashih.setEnabled(true);
+        e_bttambah.setEnabled(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void e_idpentashihKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_e_idpentashihKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    //String Tanggal = String.valueOf(sdf.format(J_date.getDate()));
+                    Date dateValue = null;
+
+                    String query = "SELECT * FROM pentashih WHERE id_pentashih = '" + e_idpentashih.getText() + "'";
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                    Statement st = koneksi.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+
+                    if (rs.next()) {
+
+                        String np = rs.getString("id_pentashih");
+                        String nama = rs.getString("nama");
+                        String jengkeldb = rs.getString("tempat");
+                        String tempat_lahirdb = rs.getString("tanggal_lahir");
+                        String tanggal_lahirdb = rs.getString("alamat");
+                        e_idpentashih.setText(np);
+                        e_nama.setText(nama);
+                        e_tempat.setText(jengkeldb);
+                        dateValue = sdf.parse(tempat_lahirdb);
+                        e_tanggal.setDate(dateValue);
+                        e_alamat.setText(tanggal_lahirdb);
+
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+
+        }
+    }//GEN-LAST:event_e_idpentashihKeyPressed
 
     /**
      * @param args the command line arguments
@@ -204,6 +428,8 @@ public class form_pentashih extends javax.swing.JDialog {
     private javax.swing.JTextField e_nama;
     private com.toedter.calendar.JDateChooser e_tanggal;
     private javax.swing.JTextField e_tempat;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

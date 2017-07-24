@@ -29,6 +29,7 @@ public class form_tesseleksi extends javax.swing.JDialog {
     private static Connection con;
     private Object tabel;
     private DefaultTableModel tabel2;
+    Float n1, n2, n3, tn1, tn2, tn3, jmltotal, p;
 
     public void bersih() {
         t_noseleksi.setText(null);
@@ -463,7 +464,7 @@ public class form_tesseleksi extends javax.swing.JDialog {
 
     private void t_btprosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_btprosesActionPerformed
         // TODO add your handling code here:
-        
+
         Float n1, n2, n3, tn1, tn2, tn3, jmltotal;
         n1 = Float.parseFloat(t_tokefasihan.getText());
         n2 = Float.parseFloat(t_tokelancaran.getText());
@@ -474,7 +475,7 @@ public class form_tesseleksi extends javax.swing.JDialog {
         if (jmltotal > 79) {
             t_keterangan.setText("LULUS");
             t_noinduk.enable(true);
-            
+
             t_target.enable(true);
             t_target.requestFocus();
             autokode3();
@@ -493,11 +494,15 @@ public class form_tesseleksi extends javax.swing.JDialog {
 
     private void t_kefasihanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_kefasihanKeyReleased
         // TODO add your handling code here:
-        Float n1, n2, n3, tn1, tn2, tn3, jmltotal, p;
-        n1 = Float.parseFloat(t_kefasihan.getText());
+        try {
+            n1 = Float.parseFloat(t_kefasihan.getText());
+            tn1 = n1 * 40 / 100;
+            t_tokefasihan.setText(String.valueOf(tn1));
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(this, "Masih kosong");
+        }
 
-        tn1 = n1 * 40 / 100;
-        t_tokefasihan.setText(String.valueOf(tn1));
+
     }//GEN-LAST:event_t_kefasihanKeyReleased
 
     private void t_kefasihanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_t_kefasihanFocusLost
@@ -507,26 +512,33 @@ public class form_tesseleksi extends javax.swing.JDialog {
 
     private void t_kelancaranKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_kelancaranKeyReleased
         // TODO add your handling code here:
-        Float n1, n2, n3, tn1, tn2, tn3, jmltotal, p;
-        n2 = Float.parseFloat(t_kelancaran.getText());
+        try {
+            n2 = Float.parseFloat(t_kelancaran.getText());
 
-        tn2 = n2 * 30 / 100;
-        t_tokelancaran.setText(String.valueOf(tn2));
+            tn2 = n2 * 30 / 100;
+            t_tokelancaran.setText(String.valueOf(tn2));
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_t_kelancaranKeyReleased
 
     private void t_kebenaranKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_kebenaranKeyReleased
         // TODO add your handling code here:
-        Float n1, n2, n3, tn1, tn2, tn3, jmltotal, p;
-        n1 = Float.parseFloat(t_kebenaran.getText());
+        try {
+            n1 = Float.parseFloat(t_kebenaran.getText());
 
-        tn1 = n1 * 30 / 100;
-        t_tokebenaran.setText(String.valueOf(tn1));
+            tn1 = n1 * 30 / 100;
+            t_tokebenaran.setText(String.valueOf(tn1));
+        } catch (Exception e) {
+        }
+
+
     }//GEN-LAST:event_t_kebenaranKeyReleased
 
     private void t_btsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_btsimpanActionPerformed
         // TODO add your handling code here:
         String ket = t_keterangan.getText().toString();
-          if ( ket.equals("LULUS")) {
+        if (ket.equals("LULUS")) {
             try {
                 String query = "SELECT * FROM pdb WHERE no_pendaftar = '" + t_nopen.getText() + "'";
                 Statement st = con.createStatement();
@@ -580,11 +592,9 @@ public class form_tesseleksi extends javax.swing.JDialog {
             } catch (Exception e) {
             }
 
-        
-        }
-         else{
-        JOptionPane.showMessageDialog(this, "data santri tidak lulus berhasil disimpan pada tabel tes seleksi");
-        
+        } else {
+            JOptionPane.showMessageDialog(this, "data santri tidak lulus berhasil disimpan pada tabel tes seleksi");
+
         }
 
         try {
@@ -610,11 +620,9 @@ public class form_tesseleksi extends javax.swing.JDialog {
         } catch (ClassNotFoundException | SQLException | HeadlessException e) {
         }
 
-      
-       
-       autokode();
-       autokode2();
-        
+        autokode();
+        autokode2();
+
     }//GEN-LAST:event_t_btsimpanActionPerformed
     public void Tampil_Tabel() {
         tabel2.setNumRows(0);
@@ -648,12 +656,10 @@ public class form_tesseleksi extends javax.swing.JDialog {
 
                 t_nama.setText(nama);
 
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Belum Terdaftar");
             }
-            
-           
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
@@ -851,7 +857,7 @@ public class form_tesseleksi extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "ERROR:\n" + e.toString(), "kesalahan", JOptionPane.WARNING_MESSAGE);
         }
     }
-    
+
     private void autokode3() {
         try {
 

@@ -5,13 +5,19 @@
  */
 package skripsi;
 
+import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -69,6 +75,7 @@ public class form_datatahfidz extends javax.swing.JDialog {
         t_edit = new javax.swing.JButton();
         t_hapus = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -113,10 +120,16 @@ public class form_datatahfidz extends javax.swing.JDialog {
         jLabel8.setText("No. HP");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(383, 159, 38, 16);
+
+        t_noinduk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_noindukKeyPressed(evt);
+            }
+        });
         getContentPane().add(t_noinduk);
-        t_noinduk.setBounds(193, 75, 93, 20);
+        t_noinduk.setBounds(193, 75, 93, 24);
         getContentPane().add(t_nama);
-        t_nama.setBounds(193, 119, 128, 20);
+        t_nama.setBounds(193, 119, 128, 24);
         getContentPane().add(t_alamat);
         t_alamat.setBounds(546, 188, 120, 51);
 
@@ -124,26 +137,26 @@ public class form_datatahfidz extends javax.swing.JDialog {
         t_cblaki.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         t_cblaki.setText("Laki-Laki");
         getContentPane().add(t_cblaki);
-        t_cblaki.setBounds(193, 195, 71, 23);
+        t_cblaki.setBounds(193, 195, 78, 28);
 
         buttonGroup1.add(t_cbpr);
         t_cbpr.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         t_cbpr.setText("Perempuan");
         getContentPane().add(t_cbpr);
-        t_cbpr.setBounds(282, 195, 79, 23);
+        t_cbpr.setBounds(282, 195, 86, 28);
         getContentPane().add(t_tempat);
-        t_tempat.setBounds(193, 157, 61, 20);
+        t_tempat.setBounds(193, 157, 61, 24);
         getContentPane().add(t_tanggal);
-        t_tanggal.setBounds(264, 157, 91, 20);
+        t_tanggal.setBounds(264, 157, 123, 29);
 
         t_cbtarget.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         t_cbtarget.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5 Juz", "10 Juz", "15 Juz", "30 Juz", " " }));
         getContentPane().add(t_cbtarget);
-        t_cbtarget.setBounds(546, 81, 57, 20);
+        t_cbtarget.setBounds(546, 81, 62, 24);
         getContentPane().add(t_wali);
-        t_wali.setBounds(546, 119, 102, 20);
+        t_wali.setBounds(546, 119, 102, 24);
         getContentPane().add(t_nope);
-        t_nope.setBounds(546, 157, 102, 20);
+        t_nope.setBounds(546, 157, 102, 24);
 
         t_tambah.setText("TAMBAH");
         t_tambah.addActionListener(new java.awt.event.ActionListener() {
@@ -152,15 +165,25 @@ public class form_datatahfidz extends javax.swing.JDialog {
             }
         });
         getContentPane().add(t_tambah);
-        t_tambah.setBounds(193, 314, 73, 23);
+        t_tambah.setBounds(193, 314, 79, 32);
 
         t_edit.setText("EDIT");
+        t_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_editActionPerformed(evt);
+            }
+        });
         getContentPane().add(t_edit);
-        t_edit.setBounds(293, 314, 68, 23);
+        t_edit.setBounds(293, 314, 68, 32);
 
         t_hapus.setText("HAPUS");
+        t_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_hapusActionPerformed(evt);
+            }
+        });
         getContentPane().add(t_hapus);
-        t_hapus.setBounds(395, 314, 65, 23);
+        t_hapus.setBounds(395, 314, 70, 32);
 
         jButton1.setText("Cari");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +192,16 @@ public class form_datatahfidz extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(292, 69, 51, 32);
+        jButton1.setBounds(292, 69, 53, 32);
+
+        jButton2.setText("BERSIH");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(100, 310, 77, 32);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/latar1.jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -181,65 +213,190 @@ public class form_datatahfidz extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //String Tanggal = String.valueOf(sdf.format(J_date.getDate()));
-        Date dateValue = null;
-        try {
-            String query = "SELECT * FROM peserta_tahfidz WHERE no_induk = '" + t_noinduk.getText() + "'";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
+        t_noinduk.setEnabled(false);
+        t_edit.setEnabled(false);
+        t_hapus.setEnabled(false);
+        t_tambah.setEnabled(true);
 
-            while (rs.next()) {
-
-                String np = rs.getString("no_induk");
-                String nama = rs.getString("nama");
-                String jengkeldb = rs.getString("jenkel");
-                String tempat_lahirdb = rs.getString("tempat_lahir");
-                String tanggal_lahirdb = rs.getString("tanggal_lahir");
-                String pendidikandb = rs.getString("pendidikan");
-                String masuk_lembagadb = rs.getString("masuk_lembaga");
-                String anak_kedb = rs.getString("anak_ke");
-                String daridb = rs.getString("dari");
-                String status_anakdb = rs.getString("status_anak");
-                String nama_ayahdb = rs.getString("nama_ayah");
-                String nama_ibudb = rs.getString("nama_ibu");
-                String alamatdb = rs.getString("alamat");
-                String penghasilan_ortudb = rs.getString("penghasilan_ortu");
-                String pendidikan_ayahdb = rs.getString("pendidikan_ayah");
-                String pendidikan_ibudb = rs.getString("pendidikan_ibu");
-                String no_hpdb = rs.getString("no_hp");
-                String administrasidb = rs.getString("administrasi");
-                String fotodb = rs.getString("foto");
-                String ijazahdb = rs.getString("ijazah");
-                String targetdb = rs.getString("target_hafalan");
-
-                t_noinduk.setText(np);
-                t_nama.setText(nama);
-                t_tempat.setText(tempat_lahirdb);
-                dateValue = sdf.parse(tanggal_lahirdb);
-                t_tanggal.setDate(dateValue);
-                t_cbtarget.setSelectedItem(targetdb);
-                t_wali.setText(nama_ayahdb);
-                t_nope.setText(no_hpdb);
-                t_alamat.setText(alamatdb);
-
-                if (jengkeldb.equals("Laki-Laki")) {
-                    t_cblaki.setSelected(true);
-                    t_cbpr.setSelected(false);
-                } else {
-                    t_cbpr.setSelected(true);
-                    t_cblaki.setSelected(false);
-                }
-
-            }
-        } catch (SQLException | ParseException e) {
-        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void t_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahActionPerformed
         // TODO add your handling code here:
+        if ((t_noinduk.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Isi Data dengan Lengkap!");
+        } else {
+            try {
+                String JenKel;
+                if (t_cblaki.isSelected()) {
+                    JenKel = "Laki-Laki";
+                } else {
+                    JenKel = "Perempuan";
+                }
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String Tanggal = String.valueOf(sdf.format(t_tanggal.getDate()));
+
+                String sql = "insert into pdb values (?,?,?,?,?,?,?,?,?)";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement tulis = koneksi.prepareStatement(sql);
+                tulis.setString(1, t_noinduk.getText());
+                tulis.setString(2, t_nama.getText());
+                tulis.setString(3, t_tempat.getText());
+                tulis.setString(4, Tanggal);
+                tulis.setString(5, JenKel);
+                tulis.setString(6, t_cbtarget.getSelectedItem().toString());
+                tulis.setString(7, t_wali.getText());
+                tulis.setString(8, t_nope.getText());
+                tulis.setString(9, t_alamat.getText());
+                tulis.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan");
+                bersih();
+                autokode3();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_t_tambahActionPerformed
+
+    private void t_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_editActionPerformed
+        // TODO add your handling code here:
+
+        if ((t_noinduk.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Isi Data dengan Lengkap!");
+        } else {
+            try {
+                String JenKel;
+                if (t_cblaki.isSelected()) {
+                    JenKel = "Laki-Laki";
+                } else {
+                    JenKel = "Perempuan";
+                }
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String Tanggal = String.valueOf(sdf.format(t_tanggal.getDate()));
+
+                String sql = "UPDATE peserta_tahfidz SET nama=?,tempat_lahir=?,"
+                        + "tanggal_lahir=?,jenkel=?,targethafalan=?,wali/ortu=?,nope=?,Alamat=?"
+                        + " WHERE no_induk=?";
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+                PreparedStatement tulis = koneksi.prepareStatement(sql);
+                tulis.setString(9, t_noinduk.getText());
+                tulis.setString(1, t_nama.getText());
+                tulis.setString(2, t_tempat.getText());
+                tulis.setString(3, Tanggal);
+                tulis.setString(4, JenKel);
+                tulis.setString(5, t_cbtarget.getSelectedItem().toString());
+                tulis.setString(6, t_wali.getText());
+                tulis.setString(7, t_nope.getText());
+                tulis.setString(8, t_alamat.getText());
+                tulis.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil Di Diedit");
+                bersih();
+                autokode3();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+                //Logger.getLogger(form_datatahfidz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_t_editActionPerformed
+
+    private void t_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hapusActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sql = "Delete from peserta_tahfidz where no_pendaftar=?";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql:///skripsi", "root", "");
+            PreparedStatement tulis = koneksi.prepareStatement(sql);
+            tulis.setString(1, t_noinduk.getText());
+            tulis.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus ");
+            bersih();
+            //refresh();
+            //Tampil_Tabel();
+            //input();
+            autokode3();
+        } catch (ClassNotFoundException | SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+
+    }//GEN-LAST:event_t_hapusActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        bersih();
+        autokode3();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void t_noindukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_noindukKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            //String Tanggal = String.valueOf(sdf.format(J_date.getDate()));
+            Date dateValue = null;
+            try {
+                String query = "SELECT * FROM peserta_tahfidz WHERE no_induk = '" + t_noinduk.getText() + "'";
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query);
+
+                while (rs.next()) {
+
+                    String np = rs.getString("no_induk");
+                    String nama = rs.getString("nama");
+                    String jengkeldb = rs.getString("jenkel");
+                    String tempat_lahirdb = rs.getString("tempat_lahir");
+                    String tanggal_lahirdb = rs.getString("tanggal_lahir");
+                    String pendidikandb = rs.getString("pendidikan");
+                    String masuk_lembagadb = rs.getString("masuk_lembaga");
+                    String anak_kedb = rs.getString("anak_ke");
+                    String daridb = rs.getString("dari");
+                    String status_anakdb = rs.getString("status_anak");
+                    String nama_ayahdb = rs.getString("nama_ayah");
+                    String nama_ibudb = rs.getString("nama_ibu");
+                    String alamatdb = rs.getString("alamat");
+                    String penghasilan_ortudb = rs.getString("penghasilan_ortu");
+                    String pendidikan_ayahdb = rs.getString("pendidikan_ayah");
+                    String pendidikan_ibudb = rs.getString("pendidikan_ibu");
+                    String no_hpdb = rs.getString("no_hp");
+                    String administrasidb = rs.getString("administrasi");
+                    String fotodb = rs.getString("foto");
+                    String ijazahdb = rs.getString("ijazah");
+                    String targetdb = rs.getString("target_hafalan");
+
+                    t_noinduk.setText(np);
+                    t_nama.setText(nama);
+                    t_tempat.setText(tempat_lahirdb);
+                    dateValue = sdf.parse(tanggal_lahirdb);
+                    t_tanggal.setDate(dateValue);
+                    t_cbtarget.setSelectedItem(targetdb);
+                    t_wali.setText(nama_ayahdb);
+                    t_nope.setText(no_hpdb);
+                    t_alamat.setText(alamatdb);
+
+                    if (jengkeldb.equals("Laki-Laki")) {
+                        t_cblaki.setSelected(true);
+                        t_cbpr.setSelected(false);
+                    } else {
+                        t_cbpr.setSelected(true);
+                        t_cblaki.setSelected(false);
+                    }
+
+                }
+            } catch (SQLException | ParseException e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Tidak Ditekan Enter");
+        }
+
+    }//GEN-LAST:event_t_noindukKeyPressed
 
     /**
      * @param args the command line arguments
@@ -301,9 +458,7 @@ public class form_datatahfidz extends javax.swing.JDialog {
                     for (int a = 0; a < 1 - nolong; a++) {
                         no = "171100" + no;
                     }
-
                     t_noinduk.setText("171100" + no);
-
                 }
             }
             rs.close();
@@ -314,9 +469,28 @@ public class form_datatahfidz extends javax.swing.JDialog {
         }
     }
 
+    public void bersih() {
+        t_noinduk.setText(null);
+        t_nama.setText(null);
+        t_cblaki.setSelected(true);
+        t_cbpr.setSelected(true);
+        t_tempat.setText(null);
+        t_tanggal.setDate(null);
+        t_cbtarget.setSelectedItem(null);
+        t_wali.setText(null);
+        t_nope.setText(null);
+        t_alamat.setText(null);
+        t_noinduk.setEnabled(false);
+        t_edit.setEnabled(false);
+        t_hapus.setEnabled(false);
+        t_tambah.setEnabled(true);
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
